@@ -1,0 +1,9 @@
+
+# Dependencies
+node_modules/
+
+#folders
+downloads
+
+#files
+.env
