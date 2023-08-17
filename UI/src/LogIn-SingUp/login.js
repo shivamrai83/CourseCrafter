@@ -56,14 +56,21 @@ function LogIn() {
 
   
   const loginRequest = async () => {
-    const token = await axios.post("http://localhost:3008/login", {
-      email,
+    console.log('filter', email, password)
+    const response = await axios.post("http://localhost:4000/user/login", {
+      username: email,
       password,
-    });
+    }, {
+      headers: {
+          "Content-type": "application/json"
+      }
+  });
+  const {token, message} = response.data;
+    console.log('filter token', token, message);
     console.log(token);
-    if (token.data.token_value) {
+    if (token) {
       history.push("/album");
-      localStorage.setItem("token", JSON.stringify(token.data.token_value));
+      localStorage.setItem("token", JSON.stringify(token));
     }
     else{
       alert("Either Username or Password are incorrect")
