@@ -20,4 +20,4 @@ app.use('/user',test, login);
 
 app.listen(PORT, () => console.log(`Server listening at ${PORT}...`));
 
-mongoose.connect('mongodb://localhost:27017/Local', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "coursecrafter" });
+mongoose.connect('mongodb://localhost:27017/CourseApp', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "CourseApp" });
