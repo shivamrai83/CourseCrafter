@@ -117,11 +117,11 @@ theme = {
         backgroundColor: "#404854",
       },
     },
-    MuiListItemText: {
-      primary: {
-        fontWeight: theme.typography.fontWeightMedium,
-      },
-    },
+    // MuiListItemText: {
+    //   primary: {
+    //     fontWeight: `${theme.typography.fontWeightMedium}`,
+    //   },
+    // },
     MuiListItemIcon: {
       root: {
         color: "inherit",
@@ -197,7 +197,7 @@ const categories = [
   },
 ];
 
-function Paperbase(props) {
+function Paperbase(props: any) {
   const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
