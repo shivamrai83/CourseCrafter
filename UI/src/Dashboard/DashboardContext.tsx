@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-const DashboardContext = createContext();
+const DashboardContext = createContext({});
 
 export const DashboardProvider = DashboardContext.Provider;
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import axios from 'axios';
 
- function LogIn(props) {
+ function LogIn(props: any) {
     const { handleSubmit, pristine, reset, submitting } = props
     return (
         <form onSubmit={handleSubmit}>
@@ -40,10 +40,14 @@ import axios from 'axios';
         </form>
     )
 }
-
-async function LogInRequest(values){
+interface LoginResponse {
+  token_value: string; // Adjust the type as needed
+  // Other properties that might be present in the response
+}
+async function LogInRequest(values: any){
   const {email,password} = values;
-  const {token_value}=await axios.post("http://localhost:3008/login",{email, password});
+  const response = await axios.post<LoginResponse>("http://localhost:3008/login", { email, password });
+  const { token_value } = response.data;
   console.log(token_value);
 }
 

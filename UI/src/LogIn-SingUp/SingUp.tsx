@@ -3,7 +3,7 @@ import { reduxForm, Field } from "redux-form";
 import { reset } from "redux-form";
 import axios from "axios";
 
-const SimpleForm = (props) => {
+const SimpleForm = (props: any) => {
   const { handleSubmit, pristine, reset, submitting } = props;
 
   return (
@@ -67,7 +67,7 @@ const SimpleForm = (props) => {
     </form>
   );
 };
-const apiRequest = async (values, dispatch) => {
+const apiRequest = async (values: any, dispatch: any) => {
   const { fullName, email, phone, password } = values;
   axios.post("http://localhost:3008/singup", {
     fullName,

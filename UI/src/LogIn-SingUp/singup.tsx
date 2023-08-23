@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SimpleForm = (props) => {
+const SimpleForm = (props: any) => {
   const classes = useStyles();
 
   const [fullName, setName] = useState("");
