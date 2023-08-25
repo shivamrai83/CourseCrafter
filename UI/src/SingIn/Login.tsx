@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LogIn() {
+function logIn() {
   const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -156,4 +156,4 @@ function LogIn() {
   );
 }
 
-export default LogIn;
+export default logIn;

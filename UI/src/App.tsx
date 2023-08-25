@@ -4,8 +4,8 @@ import {
   Route,
 } from "react-router-dom";  
 import Album from './Dashboard/album'
-import LogIn from './LogIn-SingUp/login'
-import SingUp from './LogIn-SingUp/singup'
+import LogIn from './SingIn/Login';
+import SingUp from './SingIn/Singup'
 import JS from './Dashboard/js/javascript'
 import Node from './Dashboard/Node/Node'
 import Reacts from './Dashboard/React/React'
