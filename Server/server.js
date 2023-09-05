@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-// const busyBodyParser = require('busboy-body-parser');
 
 const PORT = 4000;
 
