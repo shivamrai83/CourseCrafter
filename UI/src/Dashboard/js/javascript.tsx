@@ -142,7 +142,7 @@ theme = {
 
 const drawerWidth = 256;
 
-const styles = {
+const styles = (theme: any) => ({
   root: {
     display: "flex",
     minHeight: "100vh",
@@ -168,7 +168,7 @@ const styles = {
     padding: theme.spacing(2),
     background: "#eaeff1",
   },
-};
+});
 
 const categories = [
   {
@@ -197,8 +197,12 @@ const categories = [
   },
 ];
 
-function Paperbase(props: any) {
-  const { classes } = props;
+interface NavigatorProps {
+  classes: any; // You can provide a more specific type here if available
+}
+
+function Paperbase({ classes }: NavigatorProps) {
+  // const { classes } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -207,23 +211,25 @@ function Paperbase(props: any) {
   
   const [videoId, setVideoId] = React.useState("");
   return (
-    <DashboardProvider value={{ categories, videoId, setVideoId }}>
+    <DashboardProvider>
       <ThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
           <nav className={classes.drawer}>
-            <Hidden smUp implementation="js">
+            <>
               <Sidebar
                 PaperProps={{ style: { width: drawerWidth } }}
                 variant="temporary"
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
               />
-            </Hidden>
+            </>
             {
-              <Hidden xsDown implementation="css">
-                <Sidebar PaperProps={{ style: { width: drawerWidth } }} />
-              </Hidden>
+              <>
+              <Sidebar PaperProps={{ style: { width: drawerWidth } }} open={false} variant={""} onClose={function (): void {
+                  throw new Error("Function not implemented.");
+                } } />
+              </>
             }
           </nav>
           <div className={classes.app}>

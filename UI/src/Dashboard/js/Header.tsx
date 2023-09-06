@@ -1,16 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
-import Avatar from "@material-ui/core/Avatar";
+
 import Grid from "@material-ui/core/Grid";
-import Hidden from "@material-ui/core/Hidden";
+
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
-import Tooltip from "@material-ui/core/Tooltip";
-import Typography from "@material-ui/core/Typography";
+
 import { withStyles } from "@material-ui/core/styles";
-import ContactPhoneIcon from "@material-ui/icons/ContactPhone";
+
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 
@@ -52,7 +51,7 @@ function Header(props: HeaderProps) {
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
             // @ts-ignore
-            <Hidden smUp implementation="css">
+            <>
               {() => (
                 <Grid item>
                   <IconButton
@@ -65,7 +64,7 @@ function Header(props: HeaderProps) {
                   </IconButton>
                 </Grid>
               )}
-            </Hidden>
+            </>
             {/* ... (other Grid items) */}
           </Grid>
         </Toolbar>
