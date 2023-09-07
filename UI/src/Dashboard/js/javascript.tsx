@@ -202,7 +202,7 @@ interface NavigatorProps {
 }
 
 function Paperbase({ classes }: NavigatorProps) {
-  // const { classes } = props;
+
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {

@@ -119,7 +119,7 @@ theme = {
     },
     MuiListItemText: {
       primary: {
-        fontWeight: theme.typography.fontWeightMedium,
+        // fontWeight: theme.typography.fontWeightMedium,
       },
     },
     MuiListItemIcon: {
@@ -197,8 +197,11 @@ const categories = [
   },
 ];
 
-function Paperbase(props) {
-  const { classes } = props;
+interface NavigatorProps {
+  classes: any; // You can provide a more specific type here if available
+}
+
+function Paperbase({ classes }: NavigatorProps) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -208,23 +211,25 @@ function Paperbase(props) {
   const [videoId, setVideoId] = React.useState("");
   console.log("Js Video Id",videoId);
   return (
-    <DashboardProvider value={{ categories, videoId, setVideoId }}>
+    <DashboardProvider>
       <ThemeProvider theme={theme}>
         <div className={classes.root}>
           <CssBaseline />
           <nav className={classes.drawer}>
-            <Hidden smUp implementation="js">
+            <>
               <Sidebar
                 PaperProps={{ style: { width: drawerWidth } }}
                 variant="temporary"
                 open={mobileOpen}
                 onClose={handleDrawerToggle}
               />
-            </Hidden>
+            </>
             {
-              <Hidden xsDown implementation="css">
-                <Sidebar PaperProps={{ style: { width: drawerWidth } }} />
-              </Hidden>
+              <>
+                <Sidebar PaperProps={{ style: { width: drawerWidth } }} variant={""} open={false} onClose={function (): void {
+                  throw new Error("Function not implemented.");
+                } } />
+              </>
             }
           </nav>
           <div className={classes.app}>

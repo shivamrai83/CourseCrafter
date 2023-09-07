@@ -1,9 +1,19 @@
 import React, { useContext } from "react";
 import { ReactVideo } from "reactjs-media";
-import Context from "../DashboardContext";
+import DashboardContext from "../DashboardContext";
+interface NavigatorProps {
+  video: Array<object>; // You can provide a more specific type here if available
+}
 
-function Content({ video }) {
-  const { videoId } = useContext(Context);
+interface MyContext {
+  videoId: string;
+}
+interface Vid {
+  id: string;
+  video: string
+}
+function Content({ video }: NavigatorProps) {
+  const { videoId } = useContext<MyContext>(DashboardContext);
 
   const defaultVideo = "https://media.w3.org/2010/05/sintel/trailer_hd.mp4";
   return (

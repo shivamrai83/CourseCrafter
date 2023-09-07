@@ -16,7 +16,7 @@ import Tabs from '@material-ui/core/Tabs';
 
 const lightColor = "rgba(255, 255, 255, 0.7)";
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   secondaryBar: {
     zIndex: 0,
   },
@@ -38,15 +38,20 @@ const styles = (theme) => ({
   },
 });
 
-function Header(props) {
-  const { classes, onDrawerToggle } = props;
+interface NavigatorProps {
+  
+  onDrawerToggle: () => void;
+  classes: any; // You can provide a more specific type here if available
+}
+
+function Header({ classes, onDrawerToggle }: NavigatorProps) {
 
   return (
     <React.Fragment>
       <AppBar color="primary" position="sticky" elevation={0}>
         <Toolbar>
           <Grid container spacing={1} alignItems="center">
-            <Hidden smUp>
+            <>
               <Grid item>
                 <IconButton
                   color="inherit"
@@ -57,7 +62,7 @@ function Header(props) {
                   <MenuIcon />
                 </IconButton>
               </Grid>
-            </Hidden>
+            </>
             <Grid item xs />
 
             <Grid item xs>
