@@ -11,7 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import Context from '../DashboardContext';
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   categoryHeader: {
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
@@ -52,13 +52,28 @@ const styles = (theme) => ({
   },
 });
 
-function Navigator(props) {
-  const { classes, ...other } = props;  
-  const {categories, videoId, setVideoId} = useContext(Context);
+interface NavigatorProps {
+  PaperProps: {
+    style: React.CSSProperties;
+  };
+  variant: string;
+  open: boolean;
+  onClose: () => void;
+  classes: any; // You can provide a more specific type here if available
+}
 
-  console.log("categories",videoId);
+interface MyContext {
+  categories: Array<any>; // Replace YourCategoryType with the actual type of categories
+  setVideoId: (id: number) => void;
+}
+
+function Navigator({ PaperProps, variant, open, onClose, classes }: NavigatorProps) {
+  // const { classes, ...other } = props;  
+  const {categories, setVideoId} = useContext(Context);
+
+  // console.log("categories",videoId);
   return (
-    <Drawer variant="permanent" {...other}>
+    <Drawer  { ...{ PaperProps, open, onClose } }>
       <List disablePadding>
         <ListItem className={clsx(classes.firebase, classes.item, classes.itemCategory)}>
           Ancester
@@ -75,37 +90,35 @@ function Navigator(props) {
            Node (Zero to Hero)
           </ListItemText>
         </ListItem>
-        {categories.map(({ id, children }) => (
-          <React.Fragment key={id}>
-            <ListItem className={classes.categoryHeader}>
+        {categories.map(({ id, children }: { id: number, children: Array<any> }) => (
+        <React.Fragment key={id}>
+          <ListItem className={classes.categoryHeader}>
+            <ListItemText
+              classes={{
+                primary: classes.categoryHeaderPrimary,
+              }}
+            >
+              {id}
+            </ListItemText>
+          </ListItem>
+          {children.map(({ id: childId, icon, active }: { id: number, icon: string, active: boolean }) => (
+            <ListItem
+              key={childId}
+              onClick={() => setVideoId(childId)} 
+              className={clsx(classes.item, active && classes.itemActiveItem)}
+            >
+              <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
               <ListItemText
                 classes={{
-                  primary: classes.categoryHeaderPrimary,
+                  primary: classes.itemPrimary,
                 }}
               >
-                {id}
+                {childId}
               </ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
-              <ListItem
-                key={childId}
-                onClick = {()=>setVideoId(childId)} 
-                className={clsx(classes.item, active && classes.itemActiveItem)}
-              >
-                <ListItemIcon className={classes.itemIcon}>{icon}</ListItemIcon>
-                <ListItemText
-                  classes={{
-                    primary: classes.itemPrimary,
-                  }}
-                >
-                  {childId}
-                </ListItemText>
-              </ListItem>
-            ))}
-
-            <Divider className={classes.divider} />
-          </React.Fragment>
-        ))}
+          ))}
+        </React.Fragment>
+      ))}
       </List>
     </Drawer>
     
