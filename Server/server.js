@@ -19,4 +19,8 @@ app.use('/user',test, login);
 
 app.listen(PORT, () => console.log(`Server listening at ${PORT}...`));
 console.log("process.env.MONGO_URI", process.env.MONGO_URI);
-mongoose.connect(process.env.MONGO_URI || MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "CourseApp" });
+try {
+    mongoose.connect(process.env.MONGO_URI ||  'mongodb://localhost:27017/CourseApp', { useNewUrlParser: true, useUnifiedTopology: true, dbName: "CourseApp" });
+} catch (error) {
+    console.log('error**********', error)
+}
